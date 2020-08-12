@@ -9,6 +9,6 @@
 		fprintf(stderr, "Insuffienct memory\n"); \
 		exit(EXIT_FAILURE); \
 	}
-#define DEFAULT_SIZE 100
+#define DEFAULT_SIZE 10000
 
 #endif

@@ -3,10 +3,8 @@ CFLAGS = -Wall -Wextra -Werror
 HEADER = ./includes/
 OPTION = -I $(HEADER)
 SRC_DIR = ./srcs/
-OBJ_DIR = ./objs/
-SRC = main.c selection_sort.c
-SRCS = $(addprefix $(SRC_DIR), $(SRC))
-OBJS = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+SRCS = main.c selection_sort.c b_search.c
+OBJS = $(addprefix $(SRC_DIR), $(SRCS:.c=.o))
 TARGET = test
 
 all : $(TARGET)
@@ -14,7 +12,7 @@ all : $(TARGET)
 $(TARGET) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(OBJS) : $(SRCS)
+%.o : %.c
 	$(CC) $(CFLAGS) $(OPTION) -c -o $@ $<
 
 clean :
