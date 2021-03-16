@@ -1,15 +1,3 @@
-
-//function_name		input		output
-
-//createList()		n		list
-//deleteList()		list		n/a
-//isFull()		list		True/False
-//addElement()		list, p, e	success or fail return value
-//removeElement()	list, p		success or fail return value
-//clearList()		list		n/a
-//getListLength()	list		number of element
-//getElement()		list, p		e
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,8 +39,11 @@ ArrayList	*createList(int maxElementCount)
 
 void	deleteList(ArrayList *list)
 {
-	free(list->pElement);
-	free(list);
+	if (list != NULL)
+	{
+		free(list->pElement);
+		free(list);
+	}
 }
 
 int	isFull(ArrayList *list)
@@ -91,19 +82,57 @@ int	addElement(ArrayList *list, int p, ArrayListNode e)
 
 int	deleteElement(ArrayList *list, int p)
 {
-	deleteEelem
+	int	i;
+
+	i = 0;
+	if (list != NULL)
+	{
+		if (p < 0 || p >= list->currentElementCount)
+		{
+			perror("deletElement position is not valid");
+			return (FALSE);
+		}
+		for (i = p; i < list->currentElementCount - 1; i++)
+			list->pElement[i] = list->pElement[i + 1];
+		list->currentElementCount--;
+		return (TRUE);
+	}
+	return (FALSE);
 }
 
-int main()
+ArrayListNode	*getElement(ArrayList *list, int p)
+{
+	ArrayListNode *pReturn;
+
+	pReturn = NULL;
+	if (list != NULL)
+	{
+		if (p < 0 || p >= list->currentElementCount)
+			perror("getElement position is not vaild");
+		else
+			pReturn = &(list->pElement[p]);
+	}
+	return (pReturn);
+}
+
+int main(void)
 {
 	ArrayList	*list;
 	list = createList(4);
-//	deleteList(list);
-//	ArrayListNode tmp;
-//	tmp.data = 1;
-//	printf("%d\n", addElement(list, 0, tmp));
-//	printf("%d\n", addElement(list, 1, tmp));
-//	printf("%d\n", addElement(list, 2, tmp));
-//	printf("%d\n", addElement(list, 3, tmp));
-//	printf("%d\n", addElement(list, 4, tmp));
+	ArrayListNode tmp;
+	ArrayListNode tmp1;
+	ArrayListNode tmp2;
+	ArrayListNode tmp3;
+	tmp.data = 1;
+	tmp1.data = 2;
+	tmp2.data = 3;
+	tmp3.data = 4;
+	printf("%d\n", addElement(list, 0, tmp));
+	printf("%d\n", addElement(list, 1, tmp1));
+	printf("%d\n", addElement(list, 2, tmp2));
+	printf("%d\n", addElement(list, 3, tmp3));
+	printf("%d\n", addElement(list, 4, tmp));
+	printf("%d\n", deleteElement(list, 0));
+	printf("list[0] = %d\n", *(getElement(list, 0)));
+	deleteList(list);
 }

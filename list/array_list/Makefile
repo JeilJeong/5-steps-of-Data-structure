@@ -20,3 +20,8 @@ fclean: clean
 	rm -rf $(TARGET)
 
 re: fclean all
+
+leak:
+	valgrind --leak-check=yes ./$(TARGET)
+
+.PHONY: all clean fclean re leak
