@@ -18,7 +18,7 @@ L_List	*create_list(void)
 	return (pReturn);
 }
 
-int	add_node(L_List *list, const int p, List_Node e)
+int	add_node(L_List *list, const int p, List_Node *e)
 {
 	List_Node	*prev;
 	int		i;
@@ -40,8 +40,8 @@ int	add_node(L_List *list, const int p, List_Node e)
 		prev = prev->next;
 		i++;
 	}
-	e.next = prev->next;
-	prev->next = &(e);
+	e->next = prev->next;
+	prev->next = e;
 	list->node_num++;
 	return (TRUE);
 }
@@ -71,15 +71,9 @@ int	remove_node(L_List *list, const int p)
 	}
 
 	target = prev->next;
-	printf("%d\n", list);
-	printf("%d\n", prev->next);
-	write(1, "**\n", 3);
 	prev->next = target->next;
-	write(1, "||\n", 3);
 	free(target);
-	write(1, "^^\n", 3);
 	list->node_num--;
-	write(1, "^^\n", 3);
 	return (TRUE);
 }
 
@@ -132,44 +126,70 @@ List_Node	*get_node(L_List *list, const int p)
 
 void	print_node(L_List *list)
 {
+	List_Node	*pNode;
+	int		i;
+
 	if (list == NULL)
 	{
 		perror("list argument of print_node function is NULL");
 		return ;
+	}
+	printf("the number of current element is [%d]\n", list->node_num);
+	pNode = list->header.next;
+	i = 0;
+	while (pNode!= NULL)
+	{
+		printf("List[%d] = %d\n", i, pNode->data);
+		i++;
+		pNode = pNode->next;
 	}
 }
 
 int	main(void)
 {
 	L_List		*list;
-	List_Node	tmp1;
-	List_Node	tmp2;
-	List_Node	tmp3;
+	List_Node	*tmp1;
+	List_Node	*tmp2;
+	List_Node	*tmp3;
 	List_Node	*test;
 
+	if ((tmp1 = (List_Node *)malloc(sizeof(List_Node))) == NULL)
+	{
+		perror("testing malloc_1 is failed");
+		return (-1);
+	}
+	if ((tmp2 = (List_Node *)malloc(sizeof(List_Node))) == NULL)
+	{
+		perror("testing malloc_2 is failed");
+		return (-1);
+	}
+	if ((tmp3 = (List_Node *)malloc(sizeof(List_Node))) == NULL)
+	{
+		perror("testing malloc_3 is failed");
+		return (-1);
+	}
 	if ((list = create_list()) == NULL)
 	{
 		perror("create list error");
 		return (-1);
 	}
-	tmp1.data = 1;
-	tmp1.next = NULL;
-	tmp2.data = 2;
-	tmp2.next = NULL;
-	tmp3.data = 3;
-	tmp3.next = NULL;
+	tmp1->data = 1;
+	tmp1->next = NULL;
+	tmp2->data = 2;
+	tmp2->next = NULL;
+	tmp3->data = 3;
+	tmp3->next = NULL;
 	add_node(list, 2, tmp1);
 	add_node(list, 0, tmp1);
 	add_node(list, 2, tmp2);
 	add_node(list, 1, tmp2);
 	add_node(list, 1, tmp3);
+	print_node(list);
 	test = get_node(list, 1);
-	printf("%d\n", test->data);
-	write(1, "??\n", 3);
+	printf("pNode[1] = %d\n", test->data);
 	remove_node(list, 1);
-	write(1, "!!\n", 3);
 	test = get_node(list, 1);
-	printf("%d\n", test->data);
+	printf("(after remove pNode[1], then pNode[2] becomes pNode[1])pNode[1] = %d\n", test->data);
 	delete_list(list);
 	return (0);
 }
