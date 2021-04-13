@@ -1,5 +1,7 @@
 #include "../includes/ft_list.h"
 
+extern int	count;
+
 t_list	*ft_init(void)
 {
 	t_list	*ret;

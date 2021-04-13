@@ -5,9 +5,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-int		line_indent = 0;
-int		count = 0;
-
 typedef struct	s_list {
 	int				data;
 	struct s_list	*next;

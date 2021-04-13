@@ -1,5 +1,7 @@
 #include "../includes/ft_list.h"
 
+extern int	line_indent;
+
 void	ft_error_indent(int len)
 {
 	while (len)

@@ -1,5 +1,7 @@
-
 #include "../includes/ft_list.h"
+
+int		line_indent = 0;
+int		count = 0;
 
 int		main(void)
 {
