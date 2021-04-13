@@ -91,28 +91,35 @@ void	ft_bubble_sort_list(t_list *head)
 	t_list	*cur;
 	t_list	*prev;
 	t_list	*next;
+	t_list	*temp;
 	int		i;
 	int		j;
 	int		len;
 
-	prev = head;
-	cur = head->next;
-	next = cur->next;
 	i = 0;
 	len = count - 1;
 	while (i < len)
 	{
+		prev = head;
+		cur = head->next;
+		next = cur->next;
 		j = 0;
 		while (j < len - i)
 		{
 			if (cur->data > next->data)
 			{
+				// swap nodes
 				prev->next = next;
 				cur->next = next->next;
-				next->next = cur; 
+				next->next = cur;
+				// rearrange variables after swapping nodes
+				temp = next;
+				next = cur;
+				cur = temp;
 			}
 			prev = cur;
 			cur = cur->next;
+			next = cur->next;
 			j++;
 		}
 		i++;
