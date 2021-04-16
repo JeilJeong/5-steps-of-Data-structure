@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"ft_tree.h": "c"
+		"ft_tree.h": "c",
+		"stdio.h": "c"
 	}
 }
