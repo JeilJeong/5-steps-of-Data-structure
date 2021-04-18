@@ -1,5 +1,4 @@
 #include "../includes/ft_tree.h"
-#include "../includes/ft_queue.h"
 
 t_queue	*ft_create_queue(void)
 {
@@ -21,10 +20,10 @@ t_node	*ft_create_tnode(t_tree	*tree_node)
 	t_node	*node;
 
 	if (tree_node == NULL)
-		return ;
+		return (NULL);
 	if (!(node = (t_node *)malloc(sizeof(t_node))))
 	{
-		printf("malloc error: ft_insert_queue\n");
+		printf("malloc error: ft_create_tnode\n");
 		return (NULL);
 	}
 	node->next = NULL;
@@ -38,7 +37,7 @@ void	ft_enqueue(t_queue *queue, t_tree *tree_node)
 
 	if (queue == NULL || tree_node == NULL)
 		return ;
-	if (!(node = ft_create_node(tree_node)))
+	if (!(node = ft_create_tnode(tree_node)))
 		return ;
 	else if (queue->count == 0)
 	{

@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INC_DIR = ./includes/
 INC_FLAGS = -I $(INC_DIR)
-SRCS_LIST = ft_main.c ft_crud_tree.c ft_print_utils.c ft_search_tree.c
+SRCS_LIST = ft_main.c ft_crud_tree.c ft_print_utils.c ft_search_tree.c ft_level_traversal.c ft_queue.c
 SRCS_DIR = ./srcs/
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 OBJS = $(SRCS:.c=.o)

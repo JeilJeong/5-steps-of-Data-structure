@@ -19,7 +19,7 @@ int		main(void)
 	printf("	input num: ");
 	while (++i < 10)
 	{
-		data = rand() % 10000;
+		data = rand() % 100;
 		ft_print_input(data);
 		while (!node)
 			node = ft_create_node(data);
@@ -32,7 +32,7 @@ int		main(void)
 		printf("	Type the number:\n");
 		printf("	[1] Print	Tree\n");
 		printf("	[2] Search	Node\n");
-		printf("	[3]	Level	Traversal\n");
+		printf("	[3] Level	Traversal\n");
 		printf("	[4] Delete	Node\n");
 		printf("	[5] Delete	Tree\n");
 		printf("	[6] Count	Node\n");
@@ -50,7 +50,7 @@ int		main(void)
 			ft_search_node(root);
 		else if (input == 3)
 			ft_level_traversal(root);
-		else if (input = 4)
+		else if (input == 4)
 			root = ft_delete_node(root, &count);
 		else if (input == 5)
 			root = ft_delete_tree(root);

@@ -14,7 +14,6 @@
 # include <stdlib.h>
 # include <time.h>
 # include <unistd.h>
-# include "./ft_queue.h"
 
 typedef struct	s_tree
 {
@@ -22,6 +21,25 @@ typedef struct	s_tree
 	struct s_tree	*left;
 	struct s_tree	*right;
 }				t_tree;
+
+typedef struct	s_queue
+{
+	struct s_node	*front;
+	struct s_node	*back;
+	int				count; 
+}				t_queue;
+
+typedef	struct	s_node
+{
+	struct s_node	*next;
+	struct s_tree	*tree_node;
+}				t_node;
+
+// ft_queue.c
+t_queue	*ft_create_queue(void);
+t_node	*ft_create_tnode(t_tree	*tree_node);
+void	ft_enqueue(t_queue *queue, t_tree *tree_node);
+t_node	*ft_dequeue(t_queue *queue);
 
 // ft_crud_tree.c
 t_tree	*ft_create_node(int data);
@@ -41,5 +59,8 @@ void	ft_print_delete_case(int input);
 void	ft_search_node(t_tree *root);
 void	ft_search_input(t_tree *root, int data);
 t_tree	*ft_find_max_node(t_tree *root);
+
+// ft_level_traversal.c
+void	ft_level_traversal(t_tree *root);
 
 #endif
