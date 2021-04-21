@@ -43,7 +43,7 @@ void	ft_heapify_down(int *heap, int index, int size)
 	while (!leaf_flag)
 	{
 		left = 2 * index + 1;
-		right = 2 * index + 1;
+		right = 2 * index + 2;
 
 		if (left > size || right > size)
 		{
