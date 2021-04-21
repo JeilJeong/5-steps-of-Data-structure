@@ -75,3 +75,37 @@ int		ft_max_index(int *heap, int index, int left, int right)
 	max_index = heap[index] > heap[max_index] ? index : max_index;
 	return (max_index);
 }
+
+int		ft_max_heap(int	*heap)
+{
+	return (heap[0]);
+}
+
+int		*ft_delete_max_heap(int *heap, int size)
+{
+	int		tmp;
+	int		*re_heap;
+
+	tmp = heap[0];
+	heap[0] = heap[size - 1];
+	heap[size - 1] = tmp;
+	re_heap = ft_rearrange_heap(heap, size - 1);
+	ft_heapify_down(re_heap, 0, size - 1);
+	return (re_heap);
+}
+
+int		*ft_rearrange_heap(int	*heap, int len)
+{
+	int		*ret;
+	int		i;
+
+	if (!(ret = (int *)malloc(sizeof(int) * len)))
+	{
+		printf("malloc error: ft_rearrange_heap\n");
+		return (NULL);
+	}
+	i = -1;
+	while (++i < len)
+		ret[i] = heap[i];
+	return (ret);
+}

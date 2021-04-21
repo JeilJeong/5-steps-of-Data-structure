@@ -6,6 +6,7 @@ int		main(void)
 	int		size;
 	int		range;
 	int		i;
+	int		*re_heap;
 
 	printf("Type heap size: ");
 	scanf("%d", &size);
@@ -26,5 +27,13 @@ int		main(void)
 	printf("\nHeapified Heap: ");
 	while (++i < size)
 		printf("%d ", heap[i]);
+	printf("\n");
+	printf("Max Heap: %d\n", ft_max_heap(heap));
+	printf("Max heap was deleted\n");
+	re_heap = ft_delete_max_heap(heap, size);
+	i = -1;
+	printf("\nRearranged Heap: ");
+	while (++i < size - 1)
+		printf("%d ", re_heap[i]);
 	printf("\n");
 }
