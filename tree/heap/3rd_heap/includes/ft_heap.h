@@ -31,5 +31,6 @@ void	*ft_memcpy(void *d, void *s, size_t n);
 
 // ft_sort_heap.c
 int		*ft_heap_sort(int *heap, int size);
+int		*ft_heap_sort_print_version(int *heap, int size);
 
 #endif

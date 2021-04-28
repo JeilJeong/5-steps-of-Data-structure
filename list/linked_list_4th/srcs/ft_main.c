@@ -14,7 +14,7 @@ int		main(void)
 	i = 0;
 	head = ft_create_list();
 	srand((unsigned int)time(NULL));
-	while (i < 100)
+	while (i < 1000)
 	{
 		pos = rand() % 3;
 		data = rand() % 100;

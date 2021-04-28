@@ -6,7 +6,9 @@ int		main(void)
 	int		size;
 	int		range;
 	int		input;
-	int		*sorted_heap;
+	// int		*sorted_heap;
+	clock_t	start;
+	clock_t	end;
 
 	printf("Type heap size: ");
 	scanf("%d", &size);
@@ -20,15 +22,8 @@ int		main(void)
 		printf("alloc error: main\n");
 		return (ABNORMAL);
 	}
-	// int i;
-	// i = 0;
-	// while (i < size)
-	// {
-	// 	printf("%d ", heap[i]);
-	// 	i++;
-	// }
-	// printf("\n");
-	// insert random number;
+
+	// ft_init_heap
 	ft_init_heap(heap, size, range);
 
 	printf("Init heap: ");
@@ -78,14 +73,22 @@ int		main(void)
 	}
 
 	// ft_heap_sort
-	if (!(sorted_heap = ft_heap_sort(heap, size)))
-	{
-		printf("alloc error: main\n");
-		return (ABNORMAL);
-	}
+	// start = clock();
+	// if (!(sorted_heap = ft_heap_sort(heap, size)))
+	// {
+	// 	printf("alloc error: main\n");
+	// 	return (ABNORMAL);
+	// }
+	// end = clock();
 
+	// printf("Sorted heap: ");
+	// ft_print_heap(sorted_heap, size);
+	start = clock();
 	printf("Sorted heap: ");
-	ft_print_heap(sorted_heap, size);
-
+	heap = ft_heap_sort_print_version(heap, size);
+	end = clock();
+	free(heap);
+	// free(sorted_heap);
+	printf("time = %f\n", (float)(end - start) / CLOCKS_PER_SEC);
 	return (NORMAL);
 }
