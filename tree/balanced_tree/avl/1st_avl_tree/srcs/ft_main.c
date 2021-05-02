@@ -65,14 +65,30 @@ int		main(void)
 			break;
 		ft_println(1);
 		printf("Node Count: %d\n", count);
-		ft_println(1);
+		ft_println(2);
 	}
 	// search node in tree
 	while (1)
 	{
-		printf("Type node to find\n");
+		printf("Type node to find(Type neg num if you want to exit)\n");
 		printf(">>> ");
 		scanf("%d", &input);
-		ft_search_node(root, input);
+		if (input < 0)
+			break;
+		else
+			ft_search_node(root, input);
+		ft_println(1);
 	}
+	// delete node in tree
+	// while (1)
+	// {
+	// 	printf("Type node to remove(Type neg num if wanna exit)");
+	// 	printf(">>> ");
+	// 	scanf("%d", &input);
+	// 	if (input < 0)
+	// 		break;
+	// 	else
+	// 		ft_delete_node(root, input);
+	// 	ft_println(1);
+	// }
 }

@@ -38,6 +38,7 @@ typedef struct	s_node
 // ft_crud_avl.c
 t_tree	*ft_create_node(int data);
 int		ft_insert_node(t_tree **root, t_tree *node);
+void	ft_search_node(t_tree *root, int input);
 
 // ft_print_utils.c
 void	ft_println(int size);

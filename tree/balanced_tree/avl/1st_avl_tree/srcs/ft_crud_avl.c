@@ -33,3 +33,47 @@ int		ft_insert_node(t_tree **root, t_tree *node)
 		return (ft_insert_node(&((*root)->right), node));
 	return (0);
 }
+
+// int		ft_insert_node(t_tree **root, t_tree *node)
+// {
+// 	if (!node)
+// 		return (0);
+// 	if (!(*root))
+// 	{
+// 		*root = node;
+// 		return (1);
+// 	}
+// 	else if ((*root)->data >= node->data)
+// 		return (ft_insert_node(&((*root)->left), node));
+// 	else if ((*root)->data < node->data)
+// 		return (ft_insert_node(&((*root)->right), node));
+// 	return (0);
+// }
+
+void	ft_search_node(t_tree *root, int input)
+{
+	if (!root)
+	{
+		printf("%d does not exist in tree\n", input);
+		return ;
+	}
+	else if (root->data > input)
+		ft_search_node(root->left, input);
+	else if (root->data < input)
+		ft_search_node(root->right, input);
+	else if (root->data == input)
+		printf("%d exists in tree\n", input);
+}
+
+t_tree	*ft_delete_node(t_tree *root, int input)
+{
+	if (!root)
+		return (NULL);
+	if (root->data > input)
+		root->left = ft_delete_node(root->left, input);
+	else if (root->data < input)
+		root->right = ft_delete_node(root->right, input);
+	else if (root->data == input)
+	{
+	}
+}
