@@ -31,64 +31,85 @@ int		main(void)
 		count += ft_insert_node(&root, node);
 	}
 
-	// check by print tree
+	// menu
 	while (1)
 	{
-		printf("[1] PRE_ORDER [2] IN_ORDER [3] POST_ORDER [4] LEVEL [5] EXIT\n");
+		printf("[1] PRINT TREE [2] SEARCH NODE [3] DELETE NODE [4] EXIT\n");
 		printf(">>> ");
 		scanf("%d", &input);
 		if (input == 1)
 		{
-			printf("PRE_ORDER: ");
-			if (ft_print_tree(root, PRE_ORDER) == ABNORMAL)
-				return (ABNORMAL);
+			// check by print tree
+			while (1)
+			{
+				printf("[1] PRE_ORDER [2] IN_ORDER [3] POST_ORDER [4] LEVEL [5] EXIT\n");
+				printf(">>> ");
+				scanf("%d", &input);
+				if (input == 1)
+				{
+					printf("PRE_ORDER: ");
+					if (ft_print_tree(root, PRE_ORDER) == ABNORMAL)
+						return (ABNORMAL);
+				}
+				else if (input == 2)
+				{
+						printf("IN_ORDER: ");
+						if (ft_print_tree(root, IN_ORDER) == ABNORMAL)
+							return (ABNORMAL);
+				}
+				else if (input == 3)
+				{
+						printf("POST_ORDER: ");
+						if (ft_print_tree(root, POST_ORDER) == ABNORMAL)
+							return (ABNORMAL);
+				}
+				else if (input == 4)
+				{
+						printf("LEVEL: ");
+						if (ft_print_tree(root, LEVEL) == ABNORMAL)
+							return (ABNORMAL);
+				}
+				else if (input == 5)
+					break;
+				ft_println(1);
+				printf("Node Count: %d\n", count);
+				ft_println(2);
+			}
 		}
 		else if (input == 2)
 		{
-				printf("IN_ORDER: ");
-				if (ft_print_tree(root, IN_ORDER) == ABNORMAL)
-					return (ABNORMAL);
+			// search node in tree
+			while (1)
+			{
+				printf("Type node to find(Type neg num if you want to exit)\n");
+				printf(">>> ");
+				scanf("%d", &input);
+				if (input < 0)
+					break;
+				else
+					ft_search_node(root, input);
+				ft_println(1);
+			}
 		}
 		else if (input == 3)
 		{
-				printf("POST_ORDER: ");
-				if (ft_print_tree(root, POST_ORDER) == ABNORMAL)
-					return (ABNORMAL);
+			// delete node in tree
+			while (1)
+			{
+				printf("Type node to remove(Type neg num if wanna exit)\n");
+				printf(">>> ");
+				scanf("%d", &input);
+				if (input < 0)
+					break;
+				else
+				{
+					if ((root = ft_delete_node(root, input)))
+						count -= 1;
+				}
+				ft_println(1);
+			}
 		}
 		else if (input == 4)
-		{
-				printf("LEVEL: ");
-				if (ft_print_tree(root, LEVEL) == ABNORMAL)
-					return (ABNORMAL);
-		}
-		else if (input == 5)
-			break;
-		ft_println(1);
-		printf("Node Count: %d\n", count);
-		ft_println(2);
+			return (NORMAL);
 	}
-	// search node in tree
-	while (1)
-	{
-		printf("Type node to find(Type neg num if you want to exit)\n");
-		printf(">>> ");
-		scanf("%d", &input);
-		if (input < 0)
-			break;
-		else
-			ft_search_node(root, input);
-		ft_println(1);
-	}
-	// delete node in tree
-	// while (1)
-	// {
-	// 	printf("Type node to remove(Type neg num if wanna exit)");
-	// 	printf(">>> ");
-	// 	scanf("%d", &input);
-	// 	if (input < 0)
-	// 		break;
-	// 	else
-	// 		ft_delete_node(root, input);
-	// 	ft_println(1);
-	// }
 }

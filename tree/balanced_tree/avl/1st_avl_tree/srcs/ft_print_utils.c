@@ -78,3 +78,16 @@ int		ft_print_level(t_tree *root)
 	free(queue);
 	return (NORMAL);
 }
+
+void	ft_print_delete_case(int input)
+{
+	if (input == 1)
+		printf("Delete Case: leaf node");
+	else if (input == 2)
+		printf("Delete Case: left sub-tree exist");
+	else if (input == 3)
+		printf("Delete Case: right sub-tree exist");
+	else if (input == 4)
+		printf("Delete Case: both left and right sub-tree exist");
+	ft_println(1);
+}
