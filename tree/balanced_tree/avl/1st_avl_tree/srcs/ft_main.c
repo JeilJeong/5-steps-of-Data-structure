@@ -28,13 +28,13 @@ int		main(void)
 	{
 		data = rand() % range;
 		node = ft_create_node(data);
-		count += ft_insert_node(&root, node);
+		count += ft_insert_node(&root, node, NULL, 0);
 	}
 
 	// menu
 	while (1)
 	{
-		printf("[1] PRINT TREE [2] SEARCH NODE [3] DELETE NODE [4] EXIT\n");
+		printf("[1] PRINT TREE [2] SEARCH NODE [3] DELETE NODE [4] DELETE TREE [5] EXIT\n");
 		printf(">>> ");
 		scanf("%d", &input);
 		if (input == 1)
@@ -110,6 +110,17 @@ int		main(void)
 			}
 		}
 		else if (input == 4)
+		{
+			root = ft_delete_tree(root);
+			if (!root)
+			{
+				printf("The Tree has been deleted successfully\n");
+				count = 0;
+			}
+			else
+				printf("The Tree doesn't have been deleted\n");
+		}
+		else if (input == 5)
 			return (NORMAL);
 	}
 }

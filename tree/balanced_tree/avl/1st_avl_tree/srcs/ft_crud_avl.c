@@ -18,21 +18,39 @@ t_tree	*ft_create_node(int data)
 	return (ret);
 }
 
-int		ft_insert_node(t_tree **root, t_tree *node)
+int		ft_insert_node(t_tree **root, t_tree *node, t_tree *parent, int height)
 {
 	if (!node)
 		return (0);
 	if (!(*root))
 	{
+		node->parent = parent;
+		node->height = height;
 		*root = node;
 		return (1);
 	}
 	else if ((*root)->data >= node->data)
-		return (ft_insert_node(&((*root)->left), node));
+		return (ft_insert_node(&((*root)->left), node, *root, height + 1));
 	else if ((*root)->data < node->data)
-		return (ft_insert_node(&((*root)->right), node));
+		return (ft_insert_node(&((*root)->right), node, *root, height + 1));
 	return (0);
 }
+
+// int		ft_insert_node(t_tree **root, t_tree *node)
+// {
+// 	if (!node)
+// 		return (0);
+// 	if (!(*root))
+// 	{
+// 		*root = node;
+// 		return (1);
+// 	}
+// 	else if ((*root)->data >= node->data)
+// 		return (ft_insert_node(&((*root)->left), node));
+// 	else if ((*root)->data < node->data)
+// 		return (ft_insert_node(&((*root)->right), node));
+// 	return (0);
+// }
 
 void	ft_search_node(t_tree *root, int input)
 {
@@ -46,7 +64,13 @@ void	ft_search_node(t_tree *root, int input)
 	else if (root->data < input)
 		ft_search_node(root->right, input);
 	else if (root->data == input)
-		printf("%d exists in tree\n", input);
+	{
+		if (root->height != 0)
+			printf("%d exists in tree: height[%d], parent_data[%d], parent_heigth[%d]\n", \
+			input, root->height, root->parent->data, root->parent->height);
+		else
+			printf("%d exists in tree: height[%d]\n", input, root->height);
+	}
 }
 
 t_tree	*ft_delete_node(t_tree *root, int input)
@@ -72,20 +96,40 @@ t_tree	*ft_delete_node(t_tree *root, int input)
 		{
 			ft_print_delete_case(2);
 			tmp = root->left;
+			tmp->parent = root->parent;
 			free(root);
+			ft_resolve_height(tmp);
 			return (tmp);
 		}
 		else if (root->right && !root->left)
 		{
 			ft_print_delete_case(3);
 			tmp = root->right;
+			tmp->parent = root->parent;
 			free(root);
+			ft_resolve_height(tmp);
 			return (tmp);
 		}
 		ft_print_delete_case(4);
 		max_node = ft_find_max(root->left);
 		root->data = max_node->data;
 		root->left = ft_delete_node(root->left, max_node->data);
+	}
+	return (root);
+}
+
+t_tree	*ft_delete_tree(t_tree *root)
+{
+	if (!root)
+		return (NULL);
+	if (root->left)
+		root->left = ft_delete_tree(root->left);
+	if (root->right)
+		root->right = ft_delete_tree(root->right);
+	if (!root->left && !root->right)
+	{
+		free(root);
+		return (NULL);
 	}
 	return (root);
 }

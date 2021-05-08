@@ -37,9 +37,10 @@ typedef struct	s_node
 
 // ft_crud_avl.c
 t_tree	*ft_create_node(int data);
-int		ft_insert_node(t_tree **root, t_tree *node);
+int		ft_insert_node(t_tree **root, t_tree *node, t_tree *parent, int height);
 void	ft_search_node(t_tree *root, int input);
 t_tree	*ft_delete_node(t_tree *root, int input);
+t_tree	*ft_delete_tree(t_tree *root);
 
 // ft_print_utils.c
 void	ft_println(int size);
@@ -55,5 +56,6 @@ t_node	*ft_dequeue(t_queue *queue);
 
 // ft_avl_utils.c
 t_tree	*ft_find_max(t_tree *root);
+void	ft_resolve_height(t_tree *root);
 
 #endif
