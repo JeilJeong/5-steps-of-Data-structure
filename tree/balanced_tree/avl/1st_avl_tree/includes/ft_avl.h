@@ -12,6 +12,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
+# include <unistd.h>
 
 typedef struct	s_tree
 {
@@ -37,7 +38,7 @@ typedef struct	s_node
 
 // ft_crud_avl.c
 t_tree	*ft_create_node(int data);
-int		ft_insert_node(t_tree **root, t_tree *node, t_tree *parent, int height);
+t_tree	*ft_insert_node(t_tree **root, t_tree *node, t_tree *parent, int height);
 void	ft_search_node(t_tree *root, int input);
 t_tree	*ft_delete_node(t_tree *root, int input);
 t_tree	*ft_delete_tree(t_tree *root);
@@ -57,5 +58,9 @@ t_node	*ft_dequeue(t_queue *queue);
 // ft_avl_utils.c
 t_tree	*ft_find_max(t_tree *root);
 void	ft_resolve_height(t_tree *root);
+t_tree	*ft_check_insert_balance(t_tree *root);
+t_tree	*ft_insert_rebalance(t_tree *x, t_tree *y, t_tree *z);
+int		ft_find_deepest_height(t_tree *root);
+int		ft_sequence_case(t_tree *x, t_tree *y, t_tree *z);
 
 #endif

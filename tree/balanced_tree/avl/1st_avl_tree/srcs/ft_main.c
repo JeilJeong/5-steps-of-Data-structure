@@ -10,6 +10,7 @@ int		main(void)
 	int		input;
 	t_tree	*root;
 	t_tree	*node;
+	t_tree	*tmp;
 
 	count = 0;
 	root = NULL;
@@ -28,8 +29,26 @@ int		main(void)
 	{
 		data = rand() % range;
 		node = ft_create_node(data);
-		count += ft_insert_node(&root, node, NULL, 0);
+		if ((tmp = ft_insert_node(&root, node, NULL, 0)))
+		{
+			write(1, "!!\n", 3);
+			count += 1;
+			if (tmp->parent == NULL)
+			{
+				root = tmp;
+				write(1, "--\n", 3);
+			}
+			write(1, "??\n", 3);
+		}
 	}
+	// i = -1;
+	// srand((unsigned int)time(NULL));
+	// while (++i < size)
+	// {
+	// 	data = rand() % range;
+	// 	node = ft_create_node(data);
+	// 	count += ft_insert_node(&root, node, NULL, 0);
+	// }
 
 	// menu
 	while (1)
@@ -122,5 +141,12 @@ int		main(void)
 		}
 		else if (input == 5)
 			return (NORMAL);
+		else if (input == 6)
+		{
+			printf("find deepest height\n");
+			printf("%d\n", ft_find_deepest_height(root));
+			printf("%d\n", ft_find_deepest_height(root->left));
+			printf("%d\n", ft_find_deepest_height(root->right));
+		}
 	}
 }
