@@ -29,8 +29,9 @@ int		main(void)
 			printf("alloc error: ft_main\n");
 			return (ABNORMAL);
 		}
-		if ((temp_root = ft_insert_node(&root, node, 0, NULL)))
+		if ((temp_root = ft_insert_node(&root, &root, node, 0, NULL)))
 		{
+			// 수정 필요
 			count += 1;
 			if (!temp_root->parent)
 				root = temp_root;

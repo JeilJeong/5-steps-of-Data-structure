@@ -17,7 +17,7 @@ t_tree	*ft_create_node(int data)
 	return (ret);
 }
 
-t_tree	*ft_insert_node(t_tree **root, t_tree *node, int height, t_tree *parent)
+t_tree	*ft_insert_node(t_tree **og_root, t_tree **root, t_tree *node, int height, t_tree *parent)
 {
 	if (!node)
 		return (NULL);
@@ -26,14 +26,32 @@ t_tree	*ft_insert_node(t_tree **root, t_tree *node, int height, t_tree *parent)
 		node->height = height;
 		node->parent = parent;
 		*root = node;
+		ft_balance_check_insert_mode(og_root, *root, (*root)->height);
 		return (*root);
 	}
 	if ((*root)->data >= node->data)
-		(*root)->left = ft_insert_node(&((*root)->left), node, height + 1, *root);
+		(*root)->left = ft_insert_node(og_root, &((*root)->left), node, height + 1, *root);
 	else if ((*root)->data < node->data)
-		(*root)->right = ft_insert_node(&((*root)->right), node, height + 1, *root);
+		(*root)->right = ft_insert_node(og_root, &((*root)->right), node, height + 1, *root);
 	return (*root);
 }
+// t_tree	*ft_insert_node(t_tree **root, t_tree *node, int height, t_tree *parent)
+// {
+// 	if (!node)
+// 		return (NULL);
+// 	if (!(*root))
+// 	{
+// 		node->height = height;
+// 		node->parent = parent;
+// 		*root = node;
+// 		return (*root);
+// 	}
+// 	if ((*root)->data >= node->data)
+// 		(*root)->left = ft_insert_node(&((*root)->left), node, height + 1, *root);
+// 	else if ((*root)->data < node->data)
+// 		(*root)->right = ft_insert_node(&((*root)->right), node, height + 1, *root);
+// 	return (*root);
+// }
 
 t_tree	*ft_delete_tree(t_tree *root)
 {
