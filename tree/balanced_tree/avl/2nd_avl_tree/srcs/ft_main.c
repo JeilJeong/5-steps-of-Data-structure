@@ -58,10 +58,18 @@ int		main(void)
 			ft_print_tree(root, count);
 		else if (input == 2)
 			ft_search_node(root);
-		// else if (input == 3)
-		// 	ft_delete_node();
-		// else if (input == 4)
-		// 	ft_delete_tree();
+		else if (input == 3)
+			root = ft_delete_node(root, &count);
+		else if (input == 4)
+		{
+			root = ft_delete_tree(root);
+			if (!root)
+			{
+				count = 0;
+				printf("	>>> Tree has been deleted completely\n");
+				ft_println(1);
+			}
+		}
 		else if (input == 5)
 			return (NORMAL);
 	}

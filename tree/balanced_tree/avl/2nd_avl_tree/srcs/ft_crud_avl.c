@@ -35,7 +35,18 @@ t_tree	*ft_insert_node(t_tree **root, t_tree *node, int height, t_tree *parent)
 	return (*root);
 }
 
-t_tree	*ft_search_node(t_tree *root)
+t_tree	*ft_delete_tree(t_tree *root)
 {
-	printf("")
+	if (!root)
+		return (NULL);
+	if (root->left)
+		root->left = ft_delete_tree(root->left);
+	if (root->right)
+		root->right = ft_delete_tree(root->right);
+	if (!root->left && !root->right)
+	{
+		free(root);
+		return (NULL);
+	}
+	return (root);
 }

@@ -2,7 +2,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INC_FLAGS = -I $(INC_DIR)
 INC_DIR = ./includes/
-SRC_LIST = ft_main.c ft_crud_avl.c ft_print_utils.c ft_queue.c
+SRC_LIST = ft_main.c ft_crud_avl.c ft_print_utils.c ft_queue.c ft_search_utils.c \
+ft_delete_tree_node.c
 SRCS = $(addprefix ./srcs/, $(SRC_LIST))
 OBJS = $(SRCS:.c=.o)
 TARGET = avl
