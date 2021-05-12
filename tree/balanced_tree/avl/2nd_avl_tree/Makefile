@@ -8,7 +8,8 @@ ft_print_utils.c \
 ft_queue.c \
 ft_search_utils.c \
 ft_delete_tree_node.c \
-ft_insertion_balancing_utils.c
+ft_insertion_balancing_utils.c \
+ft_deletion_balancing_utils.c
 SRCS = $(addprefix ./srcs/, $(SRC_LIST))
 OBJS = $(SRCS:.c=.o)
 TARGET = avl

@@ -50,7 +50,7 @@ int		main(void)
 		else if (input == 2)
 			ft_search_node(root);
 		else if (input == 3)
-			root = ft_delete_node(root, &count);
+			ft_delete_node(&root, root, &count);
 		else if (input == 4)
 		{
 			root = ft_delete_tree(root);
