@@ -32,22 +32,15 @@ void	ft_balance_check_insert_mode(t_tree **og_root, t_tree *root, int height)
 				anti_height = ft_find_max_deep(z->left);
 		}
 		diff = anti_height > height ? anti_height - height : height - anti_height;
-		write(1, "diff\n", 5);
 		if (diff > 1)
 		{
-			printf("x: %d, y: %d, z: %d\n", x->data, y->data, z->data);
-			write(1, "in?\n", 4);
-			if (x == NULL)
-				printf("	>>> x is NULL\n");
 			if (!(ret = ft_rebalancing_insert_mode(x, y, z)))
-				printf("rebalancing failed\n");
-			write(1, "?\n", 2);
-			if (!ret->parent)
 			{
-				write(1, "???\n", 4);
-				*og_root = ret;
+				printf("	message: rebalancing already has done\n");
+				return ;
 			}
-			write(1, "!\n", 2);
+			if (!ret->parent)
+				*og_root = ret;
 			return ;
 		}
 		x = y;
@@ -66,8 +59,6 @@ t_tree	*ft_rebalancing_insert_mode(t_tree *x, t_tree *y, t_tree *z)
 	re_case = ft_rebalancing_case_insert_mode(x, y, z);
 	if (re_case == 1)
 	{
-		write(1, "case: 1\n", 8);
-		printf("x: %d, y: %d, z: %d\n", x->data, y->data, z->data);
 		if (z->parent)
 		{
 			if (z->parent->left == z)
@@ -85,16 +76,11 @@ t_tree	*ft_rebalancing_insert_mode(t_tree *x, t_tree *y, t_tree *z)
 			z->left = NULL;
 		y->right = z;
 		z->parent = y;
-		printf("y->left: %d, y->right: %d\n", y->left->data, y->right->data);
-		write(1, "case: 1 end\n", 12);
 		ft_resolve_height_down(y, z->height);
-		write(1, "case: 1 height\n", 16);
 		return (y);
 	}
 	else if (re_case == 2)
 	{
-		write(1, "case: 2\n", 8);
-		printf("x: %d, y: %d, z: %d\n", x->data, y->data, z->data);
 		if (z->parent)
 		{
 			if (z->parent->left == z)
@@ -112,16 +98,11 @@ t_tree	*ft_rebalancing_insert_mode(t_tree *x, t_tree *y, t_tree *z)
 			z->right = NULL;
 		y->left = z;
 		z->parent = y;
-		printf("y->left: %d, y->right: %d\n", y->left->data, y->right->data);
-		write(1, "case: 2 end\n", 12);
 		ft_resolve_height_down(y, z->height);
-		write(1, "case: 2 height\n", 16);
 		return (y);
 	}
 	else if (re_case == 3)
 	{
-		write(1, "case: 3\n", 8);
-		printf("x: %d, y: %d, z: %d\n", x->data, y->data, z->data);
 		if (x->left)
 		{
 			y->right = x->left;
@@ -148,16 +129,11 @@ t_tree	*ft_rebalancing_insert_mode(t_tree *x, t_tree *y, t_tree *z)
 		x->parent = z->parent;
 		x->right = z;
 		z->parent = x;
-		printf("x->left: %d, x->right: %d\n", x->left->data, x->right->data);
-		write(1, "case: 3 end\n", 12);
 		ft_resolve_height_down(x, z->height);
-		write(1, "case: 3 height\n", 16);
 		return (x);
 	}
 	else if (re_case == 4)
 	{
-		write(1, "case: 4\n", 8);
-		printf("x: %d, y: %d, z: %d\n", x->data, y->data, z->data);
 		if (x->right)
 		{
 			y->left = x->right;
@@ -184,13 +160,9 @@ t_tree	*ft_rebalancing_insert_mode(t_tree *x, t_tree *y, t_tree *z)
 		x->parent = z->parent;
 		x->left = z;
 		z->parent = x;
-		printf("x->left: %d, x->right: %d\n", x->left->data, x->right->data);
-		write(1, "case: 4 end\n", 12);
 		ft_resolve_height_down(x, z->height);
-		write(1, "case: 4 height\n", 16);
 		return (x);
 	}
-		write(1, "case: 0\n", 8);
 	return (z);
 }
 

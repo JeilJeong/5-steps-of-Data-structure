@@ -23,7 +23,7 @@ int		main(void)
 	while (++i < size)
 	{
 		data = rand() % range;
-		printf("data: %d\n", data);
+		printf("	[%d] Data: %d\n", i, data);
 		if (!(node = ft_create_node(data)))
 		{
 			printf("alloc error: ft_main\n");
