@@ -23,6 +23,7 @@ t_tree	*ft_insert_node(t_tree **og_root, t_tree **root, t_tree *node, int height
 		return (NULL);
 	if (!(*root))
 	{
+		write(1, "ft_insert_node\n", 15);
 		node->height = height;
 		node->parent = parent;
 		*root = node;

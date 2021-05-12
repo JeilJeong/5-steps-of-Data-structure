@@ -4,6 +4,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
+# include <unistd.h>
 
 # define NORMAL		0
 # define ABNORMAL	-1

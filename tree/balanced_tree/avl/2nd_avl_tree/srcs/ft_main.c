@@ -10,7 +10,6 @@ int		main(void)
 	int		count;
 	t_tree	*root;
 	t_tree	*node;
-	t_tree	*temp_root;
 
 	// ft_create_node & insert node
 	count = 0;
@@ -24,23 +23,14 @@ int		main(void)
 	while (++i < size)
 	{
 		data = rand() % range;
+		printf("data: %d\n", data);
 		if (!(node = ft_create_node(data)))
 		{
 			printf("alloc error: ft_main\n");
 			return (ABNORMAL);
 		}
-		if ((temp_root = ft_insert_node(&root, &root, node, 0, NULL)))
-		{
-			// 수정 필요
+		if ((ft_insert_node(&root, &root, node, 0, NULL)))
 			count += 1;
-			if (!temp_root->parent)
-				root = temp_root;
-		}
-		else
-		{
-			printf("alloc error: ft_insert_node called by ft_main.c\n");
-			return (ABNORMAL);
-		}
 	}
 	ft_println(1);
 	while (1)
