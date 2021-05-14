@@ -25,18 +25,18 @@ void	ft_delete_node(t_tree **og_root, t_tree *root, int *count)
 	}
 }
 
-t_tree	*ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int data, int *count)
+void	ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int data, int *count)
 {
 	t_tree	*max_node;
 	t_tree	*ret;
 
 	ret = NULL;
 	if (!root)
-		return (root);
+		return ;
 	if (root->data > data)
-		root->left = ft_delete_tree_node(og_root, root->left, root, data, count);
+		ft_delete_tree_node(og_root, root->left, root, data, count);
 	else if (root->data < data)
-		root->right = ft_delete_tree_node(og_root, root->right, root, data, count);
+		ft_delete_tree_node(og_root, root->right, root, data, count);
 	else if (root->data == data)
 	{
 		if (!root->left && !root->right)
@@ -45,15 +45,18 @@ t_tree	*ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int 
 			ret = root->parent;
 			if (root->height == 0)
 				*og_root = NULL;
-			if (parent->left == root)
-				parent->left = NULL;
-			else if (parent->right == root)
-				parent->right = NULL;
+			else
+			{
+				if (parent->left == root)
+					parent->left = NULL;
+				else if (parent->right == root)
+					parent->right = NULL;
+			}
 			free(root);
 			*count -= 1;
 			if (ret)
 				ft_balance_check_deletion_mode(og_root, ret);
-			return (NULL);
+			return ;
 		}
 		else if (root->left && !root->right)
 		{
@@ -61,17 +64,19 @@ t_tree	*ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int 
 			ret = root->left;
 			if (root->height == 0)
 				*og_root = ret;
-			if (parent->left == root)
-				parent->left = ret;
-			else if (parent->right == root)
-				parent->right = ret;
+			else
+			{
+				if (parent->left == root)
+					parent->left = ret;
+				else if (parent->right == root)
+					parent->right = ret;
+			}
 			free(root);
 			*count -= 1;
 			ret->parent = parent;
 			ft_resolve_height(ret, ret->height - 1);
-			// balance mode 삽입 했음 -> 마지막 상황: segfault 발생, 원인 찾아야 함
 			ft_balance_check_deletion_mode(og_root, ret);
-			return (ret);
+			return ;
 		}
 		else if (!root->left && root->right)
 		{
@@ -79,23 +84,25 @@ t_tree	*ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int 
 			ret = root->right;
 			if (root->height == 0)
 				*og_root = ret;
-			if (parent->left == root)
-				parent->left = ret;
-			else if (parent->right == root)
-				parent->right = ret;
+			else
+			{
+				if (parent->left == root)
+					parent->left = ret;
+				else if (parent->right == root)
+					parent->right = ret;
+			}
 			free(root);
 			*count -= 1;
 			ret->parent = parent;
 			ft_resolve_height(ret, ret->height - 1);
 			ft_balance_check_deletion_mode(og_root, ret);
-			return (ret);
+			return ;
 		}
 		printf("	[%d]: has both left and right sub tree\n", root->data);
 		max_node = ft_find_left_max(root->left);
 		root->data = max_node->data;
-		root->left = ft_delete_tree_node(og_root, root->left, root, max_node->data, count);
+		ft_delete_tree_node(og_root, root->left, root, max_node->data, count);
 	}
-	return (root);
 }
 
 void	ft_resolve_height(t_tree *root, int height)

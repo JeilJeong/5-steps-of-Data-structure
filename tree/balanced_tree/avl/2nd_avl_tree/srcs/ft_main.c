@@ -10,27 +10,71 @@ int		main(void)
 	int		count;
 	t_tree	*root;
 	t_tree	*node;
+	int		arr[2] = {82, 94};
+	// int		arr[10] = {32, 7, 88, 82, 94};
+	// {66, 18, 88, 7, 38, 82, 94, 0, 32, 38};
 
 	// ft_create_node & insert node
 	count = 0;
+	input = 0;
 	root = NULL;
 	printf("	Tree Size: ");
 	scanf("%d", &size);
 	printf("	Tree Range: ");
 	scanf("%d", &range);
 	i = -1;
-	srand((unsigned int)time(NULL));
-	while (++i < size)
+	ft_println(1);
+	printf("	[1] MANUAL INPUT\n");
+	printf("	[2] RANDOM INPUT\n");
+	printf("	[3] TEST   INPUT\n");
+	printf("	>>> ");
+	scanf("%d", &input);
+	ft_println(1);
+	if (input == 1)
 	{
-		data = rand() % range;
-		printf("	[%d] Data: %d\n", i, data);
-		if (!(node = ft_create_node(data)))
+		while (++i < size)
 		{
-			printf("alloc error: ft_main\n");
-			return (ABNORMAL);
+			printf("	[%d] : ", i);
+			scanf("%d", &data);
+			if (!(node = ft_create_node(data)))
+			{
+				printf("alloc error: ft_main\n");
+				return (ABNORMAL);
+			}
+			if ((ft_insert_node(&root, &root, node, 0, NULL)))
+				count += 1;
 		}
-		if ((ft_insert_node(&root, &root, node, 0, NULL)))
-			count += 1;
+	}
+	else if (input == 2)
+	{
+		srand((unsigned int)time(NULL));
+		while (++i < size)
+		{
+			data = rand() % range;
+			printf("	[%d] Data: %d\n", i, data);
+			if (!(node = ft_create_node(data)))
+			{
+				printf("alloc error: ft_main\n");
+				return (ABNORMAL);
+			}
+			if ((ft_insert_node(&root, &root, node, 0, NULL)))
+				count += 1;
+		}
+	}
+	else if (input == 3)
+	{
+		while (++i < size)
+		{
+			printf("	[%d] : %d\n", i, arr[i]);
+			data = arr[i];
+			if (!(node = ft_create_node(data)))
+			{
+				printf("alloc error: ft_main\n");
+				return (ABNORMAL);
+			}
+			if ((ft_insert_node(&root, &root, node, 0, NULL)))
+				count += 1;
+		}
 	}
 	ft_println(1);
 	while (1)

@@ -46,6 +46,16 @@ t_tree	*ft_search_tree_node(t_tree *root, int input)
 			printf("	Parent:		%d\n", root->parent->data);
 			printf("	Parent Height:	%d\n", root->parent->height);
 		}
+		if (root->left)
+		{
+			printf("	Left:		%d\n", root->left->data);
+			printf("	Left Height:	%d\n", root->left->height);
+		}
+		if (root->right)
+		{
+			printf("	Right:		%d\n", root->right->data);
+			printf("	Right Height:	%d\n", root->right->height);
+		}
 		ft_println(1);
 		return (root);
 	}

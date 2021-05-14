@@ -11,8 +11,6 @@ void	ft_balance_check_deletion_mode(t_tree **og_root, t_tree *root)
 	t_tree	*z;
 	t_tree	*ret;
 
-	write(1, "??\n", 3);
-	printf("root->data: %d, left->data: %d, right->data: %d\n", root->data, root->left->data, root->right->data);
 	if (!(*og_root) || !root)
 		return ;
 	diff = 0;
@@ -24,16 +22,13 @@ void	ft_balance_check_deletion_mode(t_tree **og_root, t_tree *root)
 	z = NULL;
 	while (temp_root)
 	{
-		write(1, "here?\n", 6);
 		if ((height = ft_check_deep(temp_root->left)) < 0)
 			height = temp_root->height;
 		if ((anti_height = ft_check_deep(temp_root->right)) < 0)
 			anti_height = temp_root->height;
-		printf("height: %d, anti: %d\n", height, anti_height);
 		diff = anti_height > height ? anti_height - height : height - anti_height;
 		if (diff > 1)
 		{
-			write(1, "diff\n", 5);
 			z = temp_root;
 			if ((y = ft_find_xyz_deletion_mode(z)))
 			{

@@ -59,7 +59,7 @@ t_tree	*ft_search_tree_node(t_tree *root, int input);
 
 // ft_delete_tree_node.c
 void	ft_delete_node(t_tree **og_root, t_tree *root, int *count);
-t_tree	*ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int data, int *count);
+void	ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int data, int *count);
 void	ft_resolve_height(t_tree *root, int height);
 t_tree	*ft_find_left_max(t_tree *root);
 
