@@ -16,7 +16,7 @@ t_tree	*ft_create_tree_node(int data)
 	return (ret);
 }
 
-void	ft_insert_tree_node(t_tree **root, t_tree *node, t_tree *parent, int *count)
+void	ft_insert_tree_node(t_tree **og_root, t_tree **root, t_tree *node, t_tree *parent, int *count)
 {
 	if (!node)
 		return ;
@@ -25,12 +25,13 @@ void	ft_insert_tree_node(t_tree **root, t_tree *node, t_tree *parent, int *count
 		node->parent = parent;
 		*root = node;
 		*count += 1;
+		ft_balancing_tree(og_root, node);
 		return ;
 	}
 	if ((*root)->data > node->data)
-		ft_insert_tree_node(&((*root)->left), node, *root, count);
+		ft_insert_tree_node(og_root, &((*root)->left), node, *root, count);
 	else if ((*root)->data < node->data)
-		ft_insert_tree_node(&((*root)->right), node, *root, count);
+		ft_insert_tree_node(og_root, &((*root)->right), node, *root, count);
 	else if ((*root)->data == node->data)
 		free(node);
 }
@@ -58,5 +59,5 @@ t_tree *ft_remove_tree(t_tree *root, int *count)
 		*count -= 1;
 		free(root);
 	}
-	return (NULL);	
+	return (NULL);
 }

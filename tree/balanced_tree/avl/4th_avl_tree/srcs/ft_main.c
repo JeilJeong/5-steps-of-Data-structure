@@ -57,7 +57,7 @@ int		main(void)
 				}
 				while (!(node = ft_create_tree_node(data)))
 					printf("	alloc error: ft_main called by ft_create_tree_node\n");
-				ft_insert_tree_node(&root, node, NULL, &count);
+				ft_insert_tree_node(&root, &root, node, NULL, &count);
 			}
 			while (1)
 			{

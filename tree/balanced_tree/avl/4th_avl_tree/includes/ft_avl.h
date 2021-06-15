@@ -32,7 +32,7 @@ typedef struct	s_queue
 
 // ft_crud_tree.c
 t_tree	*ft_create_tree_node(int data);
-void	ft_insert_tree_node(t_tree **root, t_tree *node, t_tree *parent, int *count);
+void	ft_insert_tree_node(t_tree **og_root, t_tree **root, t_tree *node, t_tree *parent, int *count);
 t_tree	*ft_remove_tree_mode(t_tree **og_root, t_tree *root, int *count);
 t_tree *ft_remove_tree(t_tree *root, int *count);
 
@@ -58,5 +58,16 @@ t_node *ft_create_queue_node(t_tree *tree_node);
 void	ft_delete_node_mode(t_tree **og_root, t_tree *root, t_tree *parent, int *count);
 t_tree	*ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int *count, int data);
 t_tree *ft_find_max_node_in_left(t_tree *root);
+
+// ft_balancing_tree.c
+void	ft_balancing_tree(t_tree **og_root, t_tree *node);
+int		ft_compare_height(t_tree *root);
+int		ft_get_height(t_tree *root);
+
+// ft_rotate_tree.c
+t_tree	*ft_rotate_ll(t_tree *x);
+t_tree	*ft_rotate_lr(t_tree *x);
+t_tree	*ft_rotate_rr(t_tree *x);
+t_tree	*ft_rotate_rl(t_tree *x);
 
 #endif
