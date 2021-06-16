@@ -26,7 +26,7 @@ int		main(void)
 		ft_println(1);
 		printf("	---------[Main Menu]---------\n");
 		printf("	[1] Random Data\n");
-		printf("	[2] Input  Data\n");
+		printf("	[2] Manual Data\n");
 		printf("	[3] Exit\n");
 		printf("	>>> ");
 		scanf("%d", &input);
