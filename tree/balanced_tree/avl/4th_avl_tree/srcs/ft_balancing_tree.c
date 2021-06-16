@@ -11,6 +11,8 @@ void	ft_balancing_tree(t_tree **og_root, t_tree *node)
 	x = NULL;
 	y = NULL;
 	z = NULL;
+	ret_node = NULL;
+	height_diff = 0;
 	if (!node)
 		return ;
 	x = node;
@@ -22,15 +24,23 @@ void	ft_balancing_tree(t_tree **og_root, t_tree *node)
 	}
 	while (x && y && z)
 	{
-		height_diff = ft_compare_height(z);
+		height_diff = ft_compare_height (z);
 		if (height_diff > 1)
 		{
 			if (ft_compare_height(y) > 0)
 				ret_node = ft_rotate_ll(x);
 			else
 				ret_node = ft_rotate_lr(x);
-			if (ret_node->parent == NULL)
-				*og_root = ret_node;
+			if (ret_node)
+			{
+				if (ret_node->parent == NULL)
+					*og_root = ret_node;
+				x = ret_node;
+				y = x->parent;
+				if (x->parent)
+					z = x->parent->parent;
+				continue;
+			}
 		}
 		else if (height_diff < -1)
 		{
@@ -38,8 +48,16 @@ void	ft_balancing_tree(t_tree **og_root, t_tree *node)
 				ret_node = ft_rotate_rr(x);
 			else
 				ret_node = ft_rotate_rl(x);
-			if (ret_node->parent == NULL)
-				*og_root = ret_node;
+			if (ret_node)
+			{
+				if (ret_node->parent == NULL)
+					*og_root = ret_node;
+				x = ret_node;
+				y = x->parent;
+				if (x->parent)
+					z = x->parent->parent;
+				continue;
+			}
 		}
 		x = y;
 		y = z;

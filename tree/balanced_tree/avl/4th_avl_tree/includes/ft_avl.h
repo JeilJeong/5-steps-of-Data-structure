@@ -30,6 +30,12 @@ typedef struct	s_queue
 	struct s_node	*back;
 }				t_queue;
 
+typedef struct	s_retTree
+{
+	struct s_tree	*child;
+	struct s_tree	*rebal_node;
+}				t_retTree;
+
 // ft_crud_tree.c
 t_tree	*ft_create_tree_node(int data);
 void	ft_insert_tree_node(t_tree **og_root, t_tree **root, t_tree *node, t_tree *parent, int *count);
@@ -56,8 +62,9 @@ t_node *ft_create_queue_node(t_tree *tree_node);
 
 // ft_delete_tree_node_mode.c
 void	ft_delete_node_mode(t_tree **og_root, t_tree *root, t_tree *parent, int *count);
-t_tree	*ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int *count, int data);
+t_retTree	*ft_delete_tree_node(t_tree **og_root, t_tree *root, t_tree *parent, int *count, int data);
 t_tree *ft_find_max_node_in_left(t_tree *root);
+t_retTree	*ft_create_retTree(t_tree *child, t_tree *rebal_node);
 
 // ft_balancing_tree.c
 void	ft_balancing_tree(t_tree **og_root, t_tree *node);
@@ -69,5 +76,8 @@ t_tree	*ft_rotate_ll(t_tree *x);
 t_tree	*ft_rotate_lr(t_tree *x);
 t_tree	*ft_rotate_rr(t_tree *x);
 t_tree	*ft_rotate_rl(t_tree *x);
+
+// ft_rebalancing_tree.c
+void	ft_rebalancing_tree(t_tree **og_root, t_tree *node);
 
 #endif
