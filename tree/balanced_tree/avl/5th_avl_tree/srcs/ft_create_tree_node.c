@@ -10,4 +10,5 @@ t_tree	*ft_create_tree_node(int data)
 	ret->parent = NULL;
 	ret->left = NULL;
 	ret->right = NULL;
+	return (ret);
 }

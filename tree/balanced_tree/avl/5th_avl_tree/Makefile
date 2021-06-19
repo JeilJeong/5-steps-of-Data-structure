@@ -3,15 +3,17 @@ CFLAGS = -Wall -Wextra -Werror
 INC_FLAGS = -I $(INC_DIR)
 INC_DIR = ./includes/
 SRC_LIST = ft_main.c \
-ft_crud_tree.c \
+ft_create_tree_node.c \
+ft_insert_tree_node.c \
 ft_print_utils.c \
-ft_search_tree_node_mode.c \
-ft_traversal_mode.c \
-ft_traversal_level_mode.c \
+ft_queue.c \
+ft_search_tree_mode.c \
+ft_traversal_tree_mode.c \
 ft_delete_tree_node_mode.c \
-ft_balancing_tree.c \
-ft_rotate_tree.c \
-ft_rebalancing_tree.c
+ft_remove_tree_mode.c \
+ft_insertion_balancing_mode.c \
+ft_rotate.c \
+ft_delete_balancing_mode.c
 SRCS = $(addprefix ./srcs/, $(SRC_LIST))
 OBJS = $(SRCS:.c=.o)
 TARGET = avl

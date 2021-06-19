@@ -1,6 +1,6 @@
 #include "../includes/ft_avl.h"
 
-void	ft_travesal_tree_mode(t_tree *root)
+void	ft_traversal_tree_mode(t_tree *root, int count)
 {
 	int		input;
 
@@ -15,10 +15,13 @@ void	ft_travesal_tree_mode(t_tree *root)
 		printf("(2) IN  -Order Trav\n");
 		printf("(3) Post-Order Trav\n");
 		printf("(4) Level      Trav\n");
+		printf("(5) Return To  Menu\n");
 		printf(">>> ");
 		scanf("%d", &input);
 		ft_println(1);
-		if (input == 1)
+		if (input == 5)
+			break;
+		else if (input == 1)
 		{
 			printf("Pre-Order: ");
 			ft_basic_trav_tree(root, input);
@@ -35,10 +38,11 @@ void	ft_travesal_tree_mode(t_tree *root)
 		}
 		else if (input == 4)
 		{
-			printf("Level: ");
+			printf("Level Trav: ");
 			ft_level_trav_tree(root);
 		}
 		ft_println(1);
+		printf("Count: %d\n", count);
 	}
 }
 
@@ -90,5 +94,9 @@ void	ft_level_trav_tree(t_tree *root)
 					ft_enqueue(queue, node->tree_node->right);
 			}
 		}
+		free(node);
+		node = NULL;
 	}
+	free(queue);
+	queue = NULL;
 }

@@ -54,7 +54,7 @@ t_node	*ft_dequeue(t_queue *queue)
 
 	ret = NULL;
 	if (!queue)
-		return ;
+		return (NULL);
 	if((ret = queue->front))
 	{
 		queue->front = ret->next;

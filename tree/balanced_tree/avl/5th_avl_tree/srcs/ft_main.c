@@ -51,12 +51,13 @@ int		main(void)
 					printf ("[%d] ", i);
 					scanf("%d", &data);
 				}
-				node = ft_create_tree_node(data);
-				ft_insert_tree_node(&root, root, node, NULL, &count);
+				while (!(node = ft_create_tree_node(data)))
+					printf("alloc error: ft_create_tree_node <<< ft_main\n");
+				ft_insert_tree_node(&root, &root, node, NULL, &count);
 			}
-			ft_println(1);
 			while (1)
 			{
+				ft_println(1);
 				printf("+++[Tree Menu]+++\n");
 				printf("{1} Search    Node\n");
 				printf("{2} Traversal Node\n");
@@ -66,16 +67,16 @@ int		main(void)
 				printf(">>> ");
 				scanf("%d", &input);
 				if (input == 1)
-					ft_search_tree_mode(root, node);
+					ft_search_tree_mode(root);
 				else if (input == 2)
-					ft_traversal_tree_mode(root);
+					ft_traversal_tree_mode(root, count);
 				else if (input == 3)
-					ft_delete_tree_node(&root, node, &count);
+					ft_delete_tree_node_mode(&root, &count);
 				else if (input == 4)
-					ft_delete_tree(root);
+					ft_remove_tree_mode(&root, &count);
 				else if (input == 5)
 				{
-					ft_delete_tree(root);
+					ft_remove_tree_mode(&root, &count);
 					break;
 				}
 			}
