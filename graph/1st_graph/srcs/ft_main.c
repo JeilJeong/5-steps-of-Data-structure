@@ -54,10 +54,12 @@ int		main(void)
 						}
 					}
 				}
+				// print all node
+				ft_print_all(graph, size);
 				// print graph by dfs
-				printf("	DFS: ");
-				ft_print_by_dfs(graph, size);
-				ft_println(2);
+				// printf("	DFS: ");
+				// ft_print_by_dfs(graph, size);
+				// ft_println(2);
 				// printf("	BFS: ");
 				// ft_print_by_bfs(graph, size);
 				// ft_println(1);

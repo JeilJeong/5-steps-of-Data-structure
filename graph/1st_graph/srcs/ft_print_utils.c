@@ -6,61 +6,23 @@ void	ft_println(int size)
 		printf("\n");
 }
 
-void	ft_print_by_dfs(t_graph *graph, int size)
+void	ft_print_all(t_graph *graph, int size)
 {
 	int		i;
-	int		flag;
-	int		index;
-	int		visit[size];
-	int		stack[size];
-	int		**head;
 	t_node	*cur;
 
 	i = -1;
-	if (!graph)
-		return ;
+	printf("	vertex_cnt: %d\n", graph->vertex_cnt);
+	printf("	edge_cnt: %d\n", graph->edge_cnt);
 	while (++i < size)
 	{
-		stack[i] = 0;
-		visit[i] = 0;
-	}
-	flag = 0;
-	head = &stack;
-	index = 0;
-	while (!flag)
-	{
-		cur = graph->graph[index];
+		printf("	vertex[%d]: ", i);
+		cur = graph->graph[i];
 		while (cur)
 		{
-			if (!visit[cur->vertex])
-				ft_stack_push(head, cur);
+			printf("%d ", cur->vertex);
 			cur = cur->next;
 		}
-		if ((index = ft_stack_pop(stack, head) < 0))
-		{
-			flag = 1;
-			continue;
-		}
-		visit[index] = 1;
-		if (!visit[index])
-			printf("%d ", index);
+		ft_println(1);
 	}
-}
-
-void	ft_stack_push(int **head, t_node *node)
-{
-	if (!head || !node)
-		return ;
-	**head = node->vertex;
-	*head++;
-}
-
-int		ft_stack_pop(int *stack, int **head)
-{
-	if (!stack || !head)
-		return (-1);
-	if (*head < stack)
-		return (-1);
-	*head--;
-	return (**head);
 }
